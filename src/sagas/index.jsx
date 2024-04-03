@@ -1,4 +1,12 @@
-import { put, takeLatest, all, race } from "redux-saga/effects";
+import { put, takeLatest, all, select } from "redux-saga/effects";
+
+export const getProject = (state) => state.news;
+
+function* deserialize(action) {
+  const state = yield select();
+  yield put({ type: "DESERIALIZE_NEWS" });
+}
+
 function* fetchNews() {
   const json = yield fetch("http://localhost:3000/posts").then((response) =>
     response.json()

@@ -12,7 +12,13 @@ import { Provider } from "react-redux";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducer, applyMiddleware(sagaMiddleware, logger));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(sagaMiddleware, logger))
+  // composeEnhancers()
+);
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

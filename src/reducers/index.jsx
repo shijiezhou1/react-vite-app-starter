@@ -11,7 +11,7 @@ const reducer = (state = {}, action) => {
       return { ...state, loading: true };
     case "COMMENTS_RECEIVED":
       console.log("d");
-      return { ...state, news: action, loading: false };
+      return { ...state, comments: action, loading: false };
 
     default:
       return state;
